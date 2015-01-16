@@ -16,6 +16,14 @@
   <% end -%>
   <%= passenger_handler -%>Env <%= @params[:rails_env] %>
 
+  <Location "/">
+    AuthType Basic
+    AuthName "Acceso Restringido"
+    AuthBasicProvider file
+    AuthUserFile /srv/www/bbvasuma/current/passwords
+    require valid-user
+  </Location>
+
   <Directory <%= @params[:docroot] %>>
     Options FollowSymLinks
     AllowOverride None
